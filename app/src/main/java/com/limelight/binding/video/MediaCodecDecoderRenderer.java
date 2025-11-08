@@ -1229,8 +1229,10 @@ public class MediaCodecDecoderRenderer extends VideoDecoderRenderer implements C
 
     @Override
     public void start() {
-        startRendererThread();
-        startChoreographerThread();
+        LimeLog.info("Moonlight Video stream disabled (custom build)");
+        return;
+        /*startRendererThread();
+        startChoreographerThread();*/
     }
 
     // !!! May be called even if setup()/start() fails !!!
@@ -1397,6 +1399,9 @@ public class MediaCodecDecoderRenderer extends VideoDecoderRenderer implements C
     public int submitDecodeUnit(byte[] decodeUnitData, int decodeUnitLength, int decodeUnitType,
                                 int frameNumber, int frameType, char frameHostProcessingLatency,
                                 long receiveTimeMs, long enqueueTimeMs) {
+        LimeLog.info("Moonlight Video frame ignored (custom build)");
+        return 0;
+        /*
         if (stopping) {
             // Don't bother if we're stopping
             return MoonBridge.DR_OK;
@@ -1748,7 +1753,7 @@ public class MediaCodecDecoderRenderer extends VideoDecoderRenderer implements C
             return MoonBridge.DR_NEED_IDR;
         }
 
-        return MoonBridge.DR_OK;
+        return MoonBridge.DR_OK;*/
     }
 
     private boolean replaySps() {
